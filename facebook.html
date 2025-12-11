@@ -5,394 +5,403 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vintage Vibes - Facebook</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
 
-      body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-          Arial, sans-serif;
-        background: #f0f2f5;
-        color: #050505;
-      }
+            body {
+              font-family:
+                -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+                Arial, sans-serif;
+              background: #f0f2f5;
+              color: #050505;
+            }
 
-      /* Header Facebook */
-      .fb-header {
-        overflow-x: auto;
-        background: white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 0 16px;
-      }
+            /* Header Facebook */
+            .fb-header {
+              overflow-x: auto;
+              background: white;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              position: sticky;
+              top: 0;
+              z-index: 1000;
+              padding: 0 16px;
+            }
 
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 56px;
-        max-width: 100%;
-      }
+            .header-content {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              height: 56px;
+              max-width: 100%;
+            }
 
-      .fb-logo {
-        color: #1877f2;
-        font-size: 40px;
-        font-weight: bold;
-      }
+            .fb-logo {
+              color: #1877f2;
+              font-size: 40px;
+              font-weight: bold;
+            }
 
-      .search-bar {
-        background: #f0f2f5;
-        border-radius: 50px;
-        padding: 10px 16px;
-        border: none;
-        width: 240px;
-      }
+            .search-bar {
+              background: #f0f2f5;
+              border-radius: 50px;
+              padding: 10px 16px;
+              border: none;
+              width: 240px;
+            }
 
-      .header-icons {
-        display: flex;
-        gap: 8px;
-      }
+            .header-icons {
+              display: flex;
+              gap: 8px;
+            }
 
-      .icon-btn {
-        width: 40px;
-        height: 40px;
-        background: #e4e6eb;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 20px;
-      }
+            .icon-btn {
+              width: 40px;
+              height: 40px;
+              background: #e4e6eb;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              font-size: 20px;
+            }
 
-      .icon-btn:hover {
-        background: #d8dadf;
-      }
+            .icon-btn:hover {
+              background: #d8dadf;
+            }
 
-      /* Cover & Profile Section */
-      .page-cover {
-        background: #222;
-        height: 150px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+            /* Cover & Profile Section */
+            .page-cover {
+              background: #222;
+              height: 150px;
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
 
-      .page-info {
-        background: white;
-        padding: 16px 32px 0;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
+            .page-info {
+              background: white;
+              padding: 16px 32px 0;
+              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
 
-      .profile-section {
-        display: flex;
-        align-items: flex-end;
-        gap: 16px;
-        margin-top: -60px;
-      }
+            .profile-section {
+              display: flex;
+              align-items: flex-end;
+              gap: 16px;
+              margin-top: -60px;
+            }
 
-      .profile-pic {
-        width: 168px;
-        height: 168px;
-        border-radius: 50%;
-        background: white;
-        border: 4px solid white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 60px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        z-index: 10;
-      }
+            .profile-pic {
+              width: 168px;
+              height: 168px;
+              border-radius: 50%;
+              background: white;
+              border: 4px solid white;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 60px;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+              z-index: 10;
+            }
 
-      .profile-pic img {
+            .profile-pic img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 50%;
+              display: block;
+            }
+
+            .page-details {
+              flex: 1;
+              padding-bottom: 16px;
+            }
+
+            .page-name {
+              font-size: 32px;
+              font-weight: bold;
+              margin-bottom: 4px;
+            }
+
+            .page-category {
+              color: #65676b;
+              font-size: 15px;
+              margin-bottom: 8px;
+            }
+
+            .page-stats {
+              color: #65676b;
+              font-size: 15px;
+            }
+
+            .page-actions {
+              display: flex;
+              gap: 8px;
+              align-items: center;
+            }
+
+            .btn-primary {
+              background: #1877f2;
+              color: white;
+              padding: 9px 24px;
+              border: none;
+              border-radius: 6px;
+              font-weight: 600;
+              cursor: pointer;
+              font-size: 15px;
+            }
+
+            .btn-secondary {
+              background: #e4e6eb;
+              color: #050505;
+              padding: 9px 24px;
+              border: none;
+              border-radius: 6px;
+              font-weight: 600;
+              cursor: pointer;
+              font-size: 15px;
+            }
+
+            .page-nav {
+              display: flex;
+              gap: 8px;
+              border-top: 1px solid #ced0d4;
+              margin-top: 16px;
+            }
+
+            .nav-item {
+              padding: 16px 16px 12px;
+              color: #65676b;
+              font-weight: 600;
+              cursor: pointer;
+              border-bottom: 3px solid transparent;
+            }
+
+            .nav-item.active {
+              color: #1877f2;
+              border-bottom-color: #1877f2;
+            }
+
+            .nav-item:hover {
+              background: #f2f3f5;
+              border-radius: 6px 6px 0 0;
+            }
+
+            /* Main Content */
+            .main-content {
+              max-width: 1100px;
+              margin: 16px auto;
+              display: grid;
+              grid-template-columns: 360px 1fr;
+              gap: 16px;
+              padding: 0 32px;
+            }
+
+            /* Sidebar */
+            .sidebar {
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+            }
+
+            .card {
+              background: white;
+              border-radius: 8px;
+              padding: 16px;
+              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-title {
+              font-size: 20px;
+              font-weight: 700;
+              margin-bottom: 12px;
+            }
+
+            .info-row {
+              display: flex;
+              gap: 12px;
+              margin-bottom: 12px;
+              align-items: flex-start;
+            }
+
+            .info-icon {
+              font-size: 20px;
+              color: #65676b;
+            }
+
+            .info-text {
+              font-size: 15px;
+              color: #050505;
+            }
+
+            /* Posts Feed */
+            .feed {
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+            }
+
+            .post-card {
+              background: white;
+              border-radius: 8px;
+              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+
+            .post-header {
+              display: flex;
+              gap: 12px;
+              padding: 12px 16px;
+            }
+
+            .post-avatar {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 20px;
+            }
+
+            .post-avatar img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 50%;
+              display: block;
+            }
+
+            .post-info {
+              flex: 1;
+            }
+
+            .post-author {
+              font-weight: 600;
+              font-size: 15px;
+            }
+
+            .post-time {
+              font-size: 13px;
+              color: #65676b;
+            }
+
+            .post-text {
+              padding: 0 16px 12px;
+              font-size: 15px;
+              line-height: 1.3333;
+            }
+
+            .post-image {
+              width: 100%;
+              background: white;
+              min-height: 400px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 120px;
+              cursor: pointer;
+            }
+
+            .post-image img {
+              max-height: 400px;
+            }
+
+            .post-stats {
+              padding: 12px 16px;
+              display: flex;
+              justify-content: space-between;
+              color: #65676b;
+              font-size: 15px;
+              border-bottom: 1px solid #ced0d4;
+            }
+
+            .reactions {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+            }
+
+            .post-actions {
+              display: flex;
+              padding: 4px 16px;
+            }
+
+            .action-btn {
+              flex: 1;
+              padding: 8px;
+              background: none;
+              border: none;
+              cursor: pointer;
+              font-weight: 600;
+              color: #65676b;
+              border-radius: 6px;
+              font-size: 15px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
+            }
+
+            .action-btn:hover {
+              background: #f2f3f5;
+            }
+
+      .card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 4px;
         display: block;
+                  👘
       }
 
-      .page-details {
-        flex: 1;
-        padding-bottom: 16px;
-      }
+            .price-tag {
+              display: inline-block;
+              background: #e7f3ff;
+              color: #1877f2;
+              padding: 6px 12px;
+              border-radius: 16px;
+              font-weight: 700;
+              font-size: 17px;
+              margin-top: 8px;
+            }
 
-      .page-name {
-        font-size: 32px;
-        font-weight: bold;
-        margin-bottom: 4px;
-      }
+            .sold-tag {
+              background: #ffebee;
+              color: #c62828;
+            }
 
-      .page-category {
-        color: #65676b;
-        font-size: 15px;
-        margin-bottom: 8px;
-      }
+            @media (max-width: 900px) {
+              .main-content {
+                grid-template-columns: 1fr;
+                padding: 0 8px;
+              }
 
-      .page-stats {
-        color: #65676b;
-        font-size: 15px;
-      }
+              .sidebar {
+                display: none;
+              }
 
-      .page-actions {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-      }
+              .page-info {
+                padding: 16px;
+              }
 
-      .btn-primary {
-        background: #1877f2;
-        color: white;
-        padding: 9px 24px;
-        border: none;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        font-size: 15px;
-      }
+              .profile-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+              }
 
-      .btn-secondary {
-        background: #e4e6eb;
-        color: #050505;
-        padding: 9px 24px;
-        border: none;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        font-size: 15px;
-      }
-
-      .page-nav {
-        display: flex;
-        gap: 8px;
-        border-top: 1px solid #ced0d4;
-        margin-top: 16px;
-      }
-
-      .nav-item {
-        padding: 16px 16px 12px;
-        color: #65676b;
-        font-weight: 600;
-        cursor: pointer;
-        border-bottom: 3px solid transparent;
-      }
-
-      .nav-item.active {
-        color: #1877f2;
-        border-bottom-color: #1877f2;
-      }
-
-      .nav-item:hover {
-        background: #f2f3f5;
-        border-radius: 6px 6px 0 0;
-      }
-
-      /* Main Content */
-      .main-content {
-        max-width: 1100px;
-        margin: 16px auto;
-        display: grid;
-        grid-template-columns: 360px 1fr;
-        gap: 16px;
-        padding: 0 32px;
-      }
-
-      /* Sidebar */
-      .sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .card {
-        background: white;
-        border-radius: 8px;
-        padding: 16px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
-
-      .card-title {
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 12px;
-      }
-
-      .info-row {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 12px;
-        align-items: flex-start;
-      }
-
-      .info-icon {
-        font-size: 20px;
-        color: #65676b;
-      }
-
-      .info-text {
-        font-size: 15px;
-        color: #050505;
-      }
-
-      /* Posts Feed */
-      .feed {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .post-card {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      }
-
-      .post-header {
-        display: flex;
-        gap: 12px;
-        padding: 12px 16px;
-      }
-
-      .post-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-      }
-
-      .post-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        display: block;
-      }
-
-      .post-info {
-        flex: 1;
-      }
-
-      .post-author {
-        font-weight: 600;
-        font-size: 15px;
-      }
-
-      .post-time {
-        font-size: 13px;
-        color: #65676b;
-      }
-
-      .post-text {
-        padding: 0 16px 12px;
-        font-size: 15px;
-        line-height: 1.3333;
-      }
-
-      .post-image {
-        width: 100%;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        min-height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 120px;
-        cursor: pointer;
-      }
-
-      .post-image img {
-        max-height: 400px;
-      }
-
-      .post-stats {
-        padding: 12px 16px;
-        display: flex;
-        justify-content: space-between;
-        color: #65676b;
-        font-size: 15px;
-        border-bottom: 1px solid #ced0d4;
-      }
-
-      .reactions {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-
-      .post-actions {
-        display: flex;
-        padding: 4px 16px;
-      }
-
-      .action-btn {
-        flex: 1;
-        padding: 8px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-weight: 600;
-        color: #65676b;
-        border-radius: 6px;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-      }
-
-      .action-btn:hover {
-        background: #f2f3f5;
-      }
-
-      .price-tag {
-        display: inline-block;
-        background: #e7f3ff;
-        color: #1877f2;
-        padding: 6px 12px;
-        border-radius: 16px;
-        font-weight: 700;
-        font-size: 17px;
-        margin-top: 8px;
-      }
-
-      .sold-tag {
-        background: #ffebee;
-        color: #c62828;
-      }
-
-      @media (max-width: 900px) {
-        .main-content {
-          grid-template-columns: 1fr;
-          padding: 0 8px;
-        }
-
-        .sidebar {
-          display: none;
-        }
-
-        .page-info {
-          padding: 16px;
-        }
-
-        .profile-section {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-
-        .page-actions {
-          justify-content: center;
-        }
-      }
+              .page-actions {
+                justify-content: center;
+              }
+            }
     </style>
   </head>
   <body>
@@ -489,13 +498,9 @@
               gap: 4px;
             "
           >
-            <div
-              style="
-                background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-                padding-bottom: 100%;
-                border-radius: 4px;
-              "
-            ></div>
+            <div>
+              <img src="images/giaccainpelle.jpeg" alt="" />
+            </div>
             <div
               style="
                 background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
@@ -562,13 +567,8 @@
             <br />
             <span class="price-tag">€89,00</span>
           </div>
-          <div
-            class="post-image"
-            style="
-              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            "
-          >
-            <img src="images/giaccainpelle.jpeg" alt="">
+          <div class="post-image">
+            <img src="images/giaccainpelle.jpeg" alt="" />
           </div>
           <div class="post-stats">
             <div class="reactions">
@@ -608,13 +608,8 @@
             <br />
             <span class="price-tag">Da €35,00</span>
           </div>
-          <div
-            class="post-image"
-            style="
-              background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            "
-          >
-            👖
+          <div class="post-image">
+            <img src="images/jeanslevis.jpg" alt="" />
           </div>
           <div class="post-stats">
             <div class="reactions">
@@ -655,13 +650,8 @@
             <br />
             <span class="price-tag sold-tag">❌ VENDUTO</span>
           </div>
-          <div
-            class="post-image"
-            style="
-              background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            "
-          >
-            👘
+          <div class="post-image">
+            <img src="images/vestitoFloreale.jpg" alt="" />
           </div>
           <div class="post-stats">
             <div class="reactions">
@@ -702,13 +692,8 @@
             <br />
             <span class="price-tag">Da €25,00</span>
           </div>
-          <div
-            class="post-image"
-            style="
-              background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
-            "
-          >
-            👜
+          <div class="post-image">
+            <img src="images/borsa.jpeg" alt="" />
           </div>
           <div class="post-stats">
             <div class="reactions">
@@ -748,13 +733,8 @@
             <br />
             <span class="price-tag">€45,00 - €75,00</span>
           </div>
-          <div
-            class="post-image"
-            style="
-              background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            "
-          >
-            👕
+          <div class="post-image">
+            <img src="images/nirvana.jpg" alt="" />
           </div>
           <div class="post-stats">
             <div class="reactions">
