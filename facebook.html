@@ -1,626 +1,775 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vintage Vibes - Facebook</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background: #f0f2f5;
+        color: #050505;
+      }
+
+      /* Header Facebook */
+      .fb-header {
+        overflow-x: auto;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0 16px;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 56px;
+        max-width: 100%;
+      }
+
+      .fb-logo {
+        color: #1877f2;
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      .search-bar {
+        background: #f0f2f5;
+        border-radius: 50px;
+        padding: 10px 16px;
+        border: none;
+        width: 240px;
+      }
+
+      .header-icons {
+        display: flex;
+        gap: 8px;
+      }
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        background: #e4e6eb;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .icon-btn:hover {
+        background: #d8dadf;
+      }
+
+      /* Cover & Profile Section */
+      .page-cover {
+        background: #222;
+        height: 150px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .page-info {
+        background: white;
+        padding: 16px 32px 0;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-section {
+        display: flex;
+        align-items: flex-end;
+        gap: 16px;
+        margin-top: -60px;
+      }
+
+      .profile-pic {
+        width: 168px;
+        height: 168px;
+        border-radius: 50%;
+        background: white;
+        border: 4px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+      }
+
+      .profile-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .page-details {
+        flex: 1;
+        padding-bottom: 16px;
+      }
+
+      .page-name {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+
+      .page-category {
+        color: #65676b;
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+
+      .page-stats {
+        color: #65676b;
+        font-size: 15px;
+      }
+
+      .page-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .btn-primary {
+        background: #1877f2;
+        color: white;
+        padding: 9px 24px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 15px;
+      }
+
+      .btn-secondary {
+        background: #e4e6eb;
+        color: #050505;
+        padding: 9px 24px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 15px;
+      }
+
+      .page-nav {
+        display: flex;
+        gap: 8px;
+        border-top: 1px solid #ced0d4;
+        margin-top: 16px;
+      }
+
+      .nav-item {
+        padding: 16px 16px 12px;
+        color: #65676b;
+        font-weight: 600;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+      }
+
+      .nav-item.active {
+        color: #1877f2;
+        border-bottom-color: #1877f2;
+      }
+
+      .nav-item:hover {
+        background: #f2f3f5;
+        border-radius: 6px 6px 0 0;
+      }
+
+      /* Main Content */
+      .main-content {
+        max-width: 1100px;
+        margin: 16px auto;
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 16px;
+        padding: 0 32px;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .info-row {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+        align-items: flex-start;
+      }
+
+      .info-icon {
+        font-size: 20px;
+        color: #65676b;
+      }
+
+      .info-text {
+        font-size: 15px;
+        color: #050505;
+      }
+
+      /* Posts Feed */
+      .feed {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .post-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .post-header {
+        display: flex;
+        gap: 12px;
+        padding: 12px 16px;
+      }
+
+      .post-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+
+      .post-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .post-info {
+        flex: 1;
+      }
+
+      .post-author {
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      .post-time {
+        font-size: 13px;
+        color: #65676b;
+      }
+
+      .post-text {
+        padding: 0 16px 12px;
+        font-size: 15px;
+        line-height: 1.3333;
+      }
+
+      .post-image {
+        width: 100%;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 120px;
+        cursor: pointer;
+      }
+
+      .post-image img {
+        max-height: 400px;
+      }
+
+      .post-stats {
+        padding: 12px 16px;
+        display: flex;
+        justify-content: space-between;
+        color: #65676b;
+        font-size: 15px;
+        border-bottom: 1px solid #ced0d4;
+      }
+
+      .reactions {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .post-actions {
+        display: flex;
+        padding: 4px 16px;
+      }
+
+      .action-btn {
+        flex: 1;
+        padding: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        color: #65676b;
+        border-radius: 6px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .action-btn:hover {
+        background: #f2f3f5;
+      }
+
+      .price-tag {
+        display: inline-block;
+        background: #e7f3ff;
+        color: #1877f2;
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-weight: 700;
+        font-size: 17px;
+        margin-top: 8px;
+      }
+
+      .sold-tag {
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      @media (max-width: 900px) {
+        .main-content {
+          grid-template-columns: 1fr;
+          padding: 0 8px;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #f0f2f5;
-            color: #050505;
-        }
-
-        /* Header Facebook */
-        .fb-header {
-            overflow-x: auto;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 0 16px;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 56px;
-            max-width: 100%;
-        }
-
-        .fb-logo {
-            color: #1877f2;
-            font-size: 40px;
-            font-weight: bold;
-        }
-
-        .search-bar {
-            background: #f0f2f5;
-            border-radius: 50px;
-            padding: 10px 16px;
-            border: none;
-            width: 240px;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            background: #e4e6eb;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .icon-btn:hover {
-            background: #d8dadf;
-        }
-
-        /* Cover & Profile Section */
-        .page-cover {
-            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
-            height: 350px;
-            position: relative;
+        .sidebar {
+          display: none;
         }
 
         .page-info {
-            background: white;
-            padding: 16px 32px 0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+          padding: 16px;
         }
 
         .profile-section {
-            display: flex;
-            align-items: flex-end;
-            gap: 16px;
-            margin-top: -60px;
-        }
-
-        .profile-pic {
-            width: 168px;
-            height: 168px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
-
-        .page-details {
-            flex: 1;
-            padding-bottom: 16px;
-        }
-
-        .page-name {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        .page-category {
-            color: #65676b;
-            font-size: 15px;
-            margin-bottom: 8px;
-        }
-
-        .page-stats {
-            color: #65676b;
-            font-size: 15px;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
         }
 
         .page-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
+          justify-content: center;
         }
-
-        .btn-primary {
-            background: #1877f2;
-            color: white;
-            padding: 9px 24px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .btn-secondary {
-            background: #e4e6eb;
-            color: #050505;
-            padding: 9px 24px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .page-nav {
-            display: flex;
-            gap: 8px;
-            border-top: 1px solid #ced0d4;
-            margin-top: 16px;
-        }
-
-        .nav-item {
-            padding: 16px 16px 12px;
-            color: #65676b;
-            font-weight: 600;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-        }
-
-        .nav-item.active {
-            color: #1877f2;
-            border-bottom-color: #1877f2;
-        }
-
-        .nav-item:hover {
-            background: #f2f3f5;
-            border-radius: 6px 6px 0 0;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1100px;
-            margin: 16px auto;
-            display: grid;
-            grid-template-columns: 360px 1fr;
-            gap: 16px;
-            padding: 0 32px;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 16px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .info-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 12px;
-            align-items: flex-start;
-        }
-
-        .info-icon {
-            font-size: 20px;
-            color: #65676b;
-        }
-
-        .info-text {
-            font-size: 15px;
-            color: #050505;
-        }
-
-        /* Posts Feed */
-        .feed {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .post-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .post-header {
-            display: flex;
-            gap: 12px;
-            padding: 12px 16px;
-        }
-
-        .post-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .post-info {
-            flex: 1;
-        }
-
-        .post-author {
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .post-time {
-            font-size: 13px;
-            color: #65676b;
-        }
-
-        .post-text {
-            padding: 0 16px 12px;
-            font-size: 15px;
-            line-height: 1.3333;
-        }
-
-        .post-image {
-            width: 100%;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 120px;
-            cursor: pointer;
-        }
-
-        .post-stats {
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            color: #65676b;
-            font-size: 15px;
-            border-bottom: 1px solid #ced0d4;
-        }
-
-        .reactions {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .post-actions {
-            display: flex;
-            padding: 4px 16px;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 8px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            color: #65676b;
-            border-radius: 6px;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .action-btn:hover {
-            background: #f2f3f5;
-        }
-
-        .price-tag {
-            display: inline-block;
-            background: #e7f3ff;
-            color: #1877f2;
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 17px;
-            margin-top: 8px;
-        }
-
-        .sold-tag {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        @media (max-width: 900px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                padding: 0 8px;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .page-info {
-                padding: 16px;
-            }
-
-            .profile-section {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .page-actions {
-                justify-content: center;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <div class="fb-header">
-        <div class="header-content">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="fb-logo">f</div>
-                <input type="text" class="search-bar" placeholder="Cerca su Facebook">
-            </div>
-            <div class="header-icons">
-                <div class="icon-btn">🏠</div>
-                <div class="icon-btn">👥</div>
-                <div class="icon-btn">📺</div>
-                <div class="icon-btn">🏪</div>
-                <div class="icon-btn">🎮</div>
-            </div>
-            <div class="header-icons">
-                <div class="icon-btn">☰</div>
-                <div class="icon-btn">💬</div>
-                <div class="icon-btn">🔔</div>
-                <div class="icon-btn">👤</div>
-            </div>
+      <div class="header-content">
+        <div style="display: flex; align-items: center; gap: 8px">
+          <div class="fb-logo">f</div>
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Cerca su Facebook"
+          />
         </div>
+        <div class="header-icons">
+          <div class="icon-btn">🏠</div>
+          <div class="icon-btn">👥</div>
+          <div class="icon-btn">📺</div>
+          <div class="icon-btn">🏪</div>
+          <div class="icon-btn">🎮</div>
+        </div>
+        <div class="header-icons">
+          <div class="icon-btn">☰</div>
+          <div class="icon-btn">💬</div>
+          <div class="icon-btn">🔔</div>
+          <div class="icon-btn">👤</div>
+        </div>
+      </div>
     </div>
 
     <!-- Cover Photo -->
-    <div class="page-cover"></div>
+    <div class="page-cover">
+      <img src="images/logo_preview_rev_1.png" alt="" />
+    </div>
 
     <!-- Page Info -->
     <div class="page-info">
-        <div class="profile-section">
-            <div class="profile-pic">👗</div>
-            <div class="page-details">
-                <h1 class="page-name">Vintage Vibes</h1>
-                <div class="page-category">🏪 Negozio di abbigliamento vintage</div>
-                <div class="page-stats">12.458 follower · 11.892 "Mi piace"</div>
-            </div>
-            <div class="page-actions">
-                <button class="btn-primary">👍 Segui</button>
-                <button class="btn-secondary">💬 Messaggio</button>
-                <button class="btn-secondary">⋯</button>
-            </div>
+      <div class="profile-section">
+        <div class="profile-pic">
+          <img src="images/propic.png" alt="" />
         </div>
-        
-        <div class="page-nav">
-            <div class="nav-item active">Post</div>
-            <div class="nav-item">Informazioni</div>
-            <div class="nav-item">Foto</div>
-            <div class="nav-item">Video</div>
-            <div class="nav-item">Recensioni</div>
-            <div class="nav-item">Altro</div>
+        <div class="page-details">
+          <h1 class="page-name">Vintage Vibes</h1>
+          <div class="page-category">🏪 Negozio di abbigliamento vintage</div>
+          <div class="page-stats">12.458 follower · 11.892 "Mi piace"</div>
         </div>
+        <div class="page-actions">
+          <button class="btn-primary">👍 Segui</button>
+          <button class="btn-secondary">💬 Messaggio</button>
+          <button class="btn-secondary">⋯</button>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <div class="nav-item active">Post</div>
+        <div class="nav-item">Informazioni</div>
+        <div class="nav-item">Foto</div>
+        <div class="nav-item">Video</div>
+        <div class="nav-item">Recensioni</div>
+        <div class="nav-item">Altro</div>
+      </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="card">
-                <div class="card-title">Informazioni</div>
-                <div class="info-row">
-                    <span class="info-icon">📍</span>
-                    <div class="info-text">Via Antica Moda, 42<br>Milano, Italia</div>
-                </div>
-                <div class="info-row">
-                    <span class="info-icon">⏰</span>
-                    <div class="info-text">Aperto ora · Chiude alle 19:00</div>
-                </div>
-                <div class="info-row">
-                    <span class="info-icon">📞</span>
-                    <div class="info-text">+39 02 1234 5678</div>
-                </div>
-                <div class="info-row">
-                    <span class="info-icon">🌐</span>
-                    <div class="info-text">www.vintagevibes.it</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-title">Foto</div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
-                    <div style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding-bottom: 100%; border-radius: 4px;"></div>
-                    <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); padding-bottom: 100%; border-radius: 4px;"></div>
-                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding-bottom: 100%; border-radius: 4px;"></div>
-                    <div style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); padding-bottom: 100%; border-radius: 4px;"></div>
-                    <div style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); padding-bottom: 100%; border-radius: 4px;"></div>
-                    <div style="background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%); padding-bottom: 100%; border-radius: 4px;"></div>
-                </div>
-            </div>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="card">
+          <div class="card-title">Informazioni</div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <div class="info-text">Via Antica Moda, 42<br />Milano, Italia</div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">⏰</span>
+            <div class="info-text">Aperto ora · Chiude alle 19:00</div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📞</span>
+            <div class="info-text">+39 02 1234 5678</div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">🌐</span>
+            <div class="info-text">www.vintagevibes.it</div>
+          </div>
         </div>
 
-        <!-- Feed -->
-        <div class="feed">
-            <!-- Post 1 -->
-            <div class="post-card">
-                <div class="post-header">
-                    <div class="post-avatar">👗</div>
-                    <div class="post-info">
-                        <div class="post-author">Vintage Vibes</div>
-                        <div class="post-time">3 ore fa · 🌍</div>
-                    </div>
-                    <div class="icon-btn" style="width: 36px; height: 36px; font-size: 16px;">⋯</div>
-                </div>
-                <div class="post-text">
-                    ✨ Nuovi arrivi! Giacca in pelle anni '80 in condizioni perfette 🔥
-                    <br><br>
-                    Vera pelle vintage, fodera originale, perfetta per l'autunno. Disponibile in taglia M.
-                    <br>
-                    <span class="price-tag">€89,00</span>
-                </div>
-                <div class="post-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🧥</div>
-                <div class="post-stats">
-                    <div class="reactions">
-                        <span>❤️😮👍</span>
-                        <span>245</span>
-                    </div>
-                    <div>48 commenti · 23 condivisioni</div>
-                </div>
-                <div class="post-actions">
-                    <button class="action-btn">👍 Mi piace</button>
-                    <button class="action-btn">💬 Commenta</button>
-                    <button class="action-btn">↗️ Condividi</button>
-                </div>
-            </div>
-
-            <!-- Post 2 -->
-            <div class="post-card">
-                <div class="post-header">
-                    <div class="post-avatar">👗</div>
-                    <div class="post-info">
-                        <div class="post-author">Vintage Vibes</div>
-                        <div class="post-time">Ieri alle 15:30 · 🌍</div>
-                    </div>
-                    <div class="icon-btn" style="width: 36px; height: 36px; font-size: 16px;">⋯</div>
-                </div>
-                <div class="post-text">
-                    🌟 VENERDÌ VINTAGE! Sconti del 20% su tutti i jeans 🎉
-                    <br><br>
-                    Levi's, Wrangler, Lee originali anni '90! Solo per questo weekend.
-                    <br>
-                    <span class="price-tag">Da €35,00</span>
-                </div>
-                <div class="post-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">👖</div>
-                <div class="post-stats">
-                    <div class="reactions">
-                        <span>❤️👍🔥</span>
-                        <span>312</span>
-                    </div>
-                    <div>67 commenti · 41 condivisioni</div>
-                </div>
-                <div class="post-actions">
-                    <button class="action-btn">👍 Mi piace</button>
-                    <button class="action-btn">💬 Commenta</button>
-                    <button class="action-btn">↗️ Condividi</button>
-                </div>
-            </div>
-
-            <!-- Post 3 -->
-            <div class="post-card">
-                <div class="post-header">
-                    <div class="post-avatar">👗</div>
-                    <div class="post-info">
-                        <div class="post-author">Vintage Vibes</div>
-                        <div class="post-time">2 giorni fa · 🌍</div>
-                    </div>
-                    <div class="icon-btn" style="width: 36px; height: 36px; font-size: 16px;">⋯</div>
-                </div>
-                <div class="post-text">
-                    💎 PEZZO RARO! Vestito floreale anni '70 in seta originale
-                    <br><br>
-                    Fatto a mano, motivo floreale unico, perfetto per eventi speciali. Taglia S/M.
-                    <br>
-                    <span class="price-tag sold-tag">❌ VENDUTO</span>
-                </div>
-                <div class="post-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">👘</div>
-                <div class="post-stats">
-                    <div class="reactions">
-                        <span>❤️😍🔥</span>
-                        <span>428</span>
-                    </div>
-                    <div>93 commenti · 58 condivisioni</div>
-                </div>
-                <div class="post-actions">
-                    <button class="action-btn">👍 Mi piace</button>
-                    <button class="action-btn">💬 Commenta</button>
-                    <button class="action-btn">↗️ Condividi</button>
-                </div>
-            </div>
-
-            <!-- Post 4 -->
-            <div class="post-card">
-                <div class="post-header">
-                    <div class="post-avatar">👗</div>
-                    <div class="post-info">
-                        <div class="post-author">Vintage Vibes</div>
-                        <div class="post-time">3 giorni fa · 🌍</div>
-                    </div>
-                    <div class="icon-btn" style="width: 36px; height: 36px; font-size: 16px;">⋯</div>
-                </div>
-                <div class="post-text">
-                    🎒 Collezione accessori vintage! Borse, cinture e cappelli anni '80-'90
-                    <br><br>
-                    Tutto originale e in ottime condizioni. Passa a trovarci in negozio! 
-                    <br>
-                    <span class="price-tag">Da €25,00</span>
-                </div>
-                <div class="post-image" style="background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);">👜</div>
-                <div class="post-stats">
-                    <div class="reactions">
-                        <span>❤️👍😍</span>
-                        <span>189</span>
-                    </div>
-                    <div>34 commenti · 19 condivisioni</div>
-                </div>
-                <div class="post-actions">
-                    <button class="action-btn">👍 Mi piace</button>
-                    <button class="action-btn">💬 Commenta</button>
-                    <button class="action-btn">↗️ Condividi</button>
-                </div>
-            </div>
-
-            <!-- Post 5 -->
-            <div class="post-card">
-                <div class="post-header">
-                    <div class="post-avatar">👗</div>
-                    <div class="post-info">
-                        <div class="post-author">Vintage Vibes</div>
-                        <div class="post-time">5 giorni fa · 🌍</div>
-                    </div>
-                    <div class="icon-btn" style="width: 36px; height: 36px; font-size: 16px;">⋯</div>
-                </div>
-                <div class="post-text">
-                    ⭐ T-shirt band originali anni '90! Rock, grunge e alternative 🎸
-                    <br><br>
-                    Nirvana, Pearl Jam, Soundgarden e molte altre. Pezzi da collezione!
-                    <br>
-                    <span class="price-tag">€45,00 - €75,00</span>
-                </div>
-                <div class="post-image" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">👕</div>
-                <div class="post-stats">
-                    <div class="reactions">
-                        <span>❤️🔥🤘</span>
-                        <span>567</span>
-                    </div>
-                    <div>128 commenti · 84 condivisioni</div>
-                </div>
-                <div class="post-actions">
-                    <button class="action-btn">👍 Mi piace</button>
-                    <button class="action-btn">💬 Commenta</button>
-                    <button class="action-btn">↗️ Condividi</button>
-                </div>
-            </div>
+        <div class="card">
+          <div class="card-title">Foto</div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 4px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+                padding-bottom: 100%;
+                border-radius: 4px;
+              "
+            ></div>
+            <div
+              style="
+                background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                padding-bottom: 100%;
+                border-radius: 4px;
+              "
+            ></div>
+            <div
+              style="
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                padding-bottom: 100%;
+                border-radius: 4px;
+              "
+            ></div>
+            <div
+              style="
+                background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+                padding-bottom: 100%;
+                border-radius: 4px;
+              "
+            ></div>
+            <div
+              style="
+                background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+                padding-bottom: 100%;
+                border-radius: 4px;
+              "
+            ></div>
+            <div
+              style="
+                background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+                padding-bottom: 100%;
+                border-radius: 4px;
+              "
+            ></div>
+          </div>
         </div>
+      </div>
+
+      <!-- Feed -->
+      <div class="feed">
+        <!-- Post 1 -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar">
+              <img src="images/propic.png" alt="" />
+            </div>
+            <div class="post-info">
+              <div class="post-author">Vintage Vibes</div>
+              <div class="post-time">3 ore fa · 🌍</div>
+            </div>
+            <div
+              class="icon-btn"
+              style="width: 36px; height: 36px; font-size: 16px"
+            >
+              ⋯
+            </div>
+          </div>
+          <div class="post-text">
+            ✨ Nuovi arrivi! Giacca in pelle anni '80 in condizioni perfette 🔥
+            <br /><br />
+            Vera pelle vintage, fodera originale, perfetta per l'autunno.
+            Disponibile in taglia M.
+            <br />
+            <span class="price-tag">€89,00</span>
+          </div>
+          <div
+            class="post-image"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            "
+          >
+            <img src="images/giaccainpelle.jpeg" alt="">
+          </div>
+          <div class="post-stats">
+            <div class="reactions">
+              <span>❤️😮👍</span>
+              <span>245</span>
+            </div>
+            <div>48 commenti · 23 condivisioni</div>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn">👍 Mi piace</button>
+            <button class="action-btn">💬 Commenta</button>
+            <button class="action-btn">↗️ Condividi</button>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar">
+              <img src="images/propic.png" alt="" />
+            </div>
+            <div class="post-info">
+              <div class="post-author">Vintage Vibes</div>
+              <div class="post-time">Ieri alle 15:30 · 🌍</div>
+            </div>
+            <div
+              class="icon-btn"
+              style="width: 36px; height: 36px; font-size: 16px"
+            >
+              ⋯
+            </div>
+          </div>
+          <div class="post-text">
+            🌟 VENERDÌ VINTAGE! Sconti del 20% su tutti i jeans 🎉
+            <br /><br />
+            Levi's, Wrangler, Lee originali anni '90! Solo per questo weekend.
+            <br />
+            <span class="price-tag">Da €35,00</span>
+          </div>
+          <div
+            class="post-image"
+            style="
+              background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            "
+          >
+            👖
+          </div>
+          <div class="post-stats">
+            <div class="reactions">
+              <span>❤️👍🔥</span>
+              <span>312</span>
+            </div>
+            <div>67 commenti · 41 condivisioni</div>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn">👍 Mi piace</button>
+            <button class="action-btn">💬 Commenta</button>
+            <button class="action-btn">↗️ Condividi</button>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar">
+              <img src="images/propic.png" alt="" />
+            </div>
+            <div class="post-info">
+              <div class="post-author">Vintage Vibes</div>
+              <div class="post-time">2 giorni fa · 🌍</div>
+            </div>
+            <div
+              class="icon-btn"
+              style="width: 36px; height: 36px; font-size: 16px"
+            >
+              ⋯
+            </div>
+          </div>
+          <div class="post-text">
+            💎 PEZZO RARO! Vestito floreale anni '70 in seta originale
+            <br /><br />
+            Fatto a mano, motivo floreale unico, perfetto per eventi speciali.
+            Taglia S/M.
+            <br />
+            <span class="price-tag sold-tag">❌ VENDUTO</span>
+          </div>
+          <div
+            class="post-image"
+            style="
+              background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            "
+          >
+            👘
+          </div>
+          <div class="post-stats">
+            <div class="reactions">
+              <span>❤️😍🔥</span>
+              <span>428</span>
+            </div>
+            <div>93 commenti · 58 condivisioni</div>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn">👍 Mi piace</button>
+            <button class="action-btn">💬 Commenta</button>
+            <button class="action-btn">↗️ Condividi</button>
+          </div>
+        </div>
+
+        <!-- Post 4 -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar">
+              <img src="images/propic.png" alt="" />
+            </div>
+            <div class="post-info">
+              <div class="post-author">Vintage Vibes</div>
+              <div class="post-time">3 giorni fa · 🌍</div>
+            </div>
+            <div
+              class="icon-btn"
+              style="width: 36px; height: 36px; font-size: 16px"
+            >
+              ⋯
+            </div>
+          </div>
+          <div class="post-text">
+            🎒 Collezione accessori vintage! Borse, cinture e cappelli anni
+            '80-'90
+            <br /><br />
+            Tutto originale e in ottime condizioni. Passa a trovarci in negozio!
+            <br />
+            <span class="price-tag">Da €25,00</span>
+          </div>
+          <div
+            class="post-image"
+            style="
+              background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+            "
+          >
+            👜
+          </div>
+          <div class="post-stats">
+            <div class="reactions">
+              <span>❤️👍😍</span>
+              <span>189</span>
+            </div>
+            <div>34 commenti · 19 condivisioni</div>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn">👍 Mi piace</button>
+            <button class="action-btn">💬 Commenta</button>
+            <button class="action-btn">↗️ Condividi</button>
+          </div>
+        </div>
+
+        <!-- Post 5 -->
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar">
+              <img src="images/propic.png" alt="" />
+            </div>
+            <div class="post-info">
+              <div class="post-author">Vintage Vibes</div>
+              <div class="post-time">5 giorni fa · 🌍</div>
+            </div>
+            <div
+              class="icon-btn"
+              style="width: 36px; height: 36px; font-size: 16px"
+            >
+              ⋯
+            </div>
+          </div>
+          <div class="post-text">
+            ⭐ T-shirt band originali anni '90! Rock, grunge e alternative 🎸
+            <br /><br />
+            Nirvana, Pearl Jam, Soundgarden e molte altre. Pezzi da collezione!
+            <br />
+            <span class="price-tag">€45,00 - €75,00</span>
+          </div>
+          <div
+            class="post-image"
+            style="
+              background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            "
+          >
+            👕
+          </div>
+          <div class="post-stats">
+            <div class="reactions">
+              <span>❤️🔥🤘</span>
+              <span>567</span>
+            </div>
+            <div>128 commenti · 84 condivisioni</div>
+          </div>
+          <div class="post-actions">
+            <button class="action-btn">👍 Mi piace</button>
+            <button class="action-btn">💬 Commenta</button>
+            <button class="action-btn">↗️ Condividi</button>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
